@@ -25,6 +25,6 @@ Social networking platforms
 Enterprise productivity tools
 
 Get in Touch
-Contact us for collaborations: info@gothwadapps.com
+Contact us for collaborations: gothwadapps@gmail.com
 Follow on GitHub: Gothwad Apps
 LinkedIn: Gothwad Apps Profile
