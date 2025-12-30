@@ -3,391 +3,534 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gothwad Apps  | Founder & CEO Pawan Gothwad | All Development Company | Web App Expert Team</title>
+    <title>Gothwad Apps | Founder & CEO Pawan Gothwad | Web Apps Experts</title>
     
-    <!-- Ultra Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- 0. THE GOD-TIER RESET --- */
+        /* --- 1. THEME VARIABLES (Original Colors) --- */
         :root {
-            --black: #050505;
-            --charcoal: #0a0a0a;
-            --white: #e1e1e1;
-            --accent: #4f46e5; /* Electric Indigo */
-            --neon: #00f0ff;    /* Cyber Cyan */
-            --gold: #FFD700;
-            --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            --bg: #030712;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --primary: #6366f1;
+            --accent: #ec4899;
+            --cyan: #06b6d4;
+            --text: #f3f4f6;
+            --text-muted: #9ca3af;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        
-        body { 
-            background-color: var(--black); 
-            color: var(--white); 
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        /* FILM GRAIN OVERLAY (Cinematic Feel) */
-        .grain-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: var(--grain); pointer-events: none; z-index: 9999;
-            opacity: 0.4;
-        }
+        /* Scroll Progress Bar */
+        #progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: transparent; z-index: 9999; }
+        #progress-bar { height: 4px; background: var(--gradient); width: 0%; transition: width 0.1s; }
 
-        /* --- 1. THE ULTIMATE CURSOR --- */
-        .cursor-main {
-            position: fixed; width: 20px; height: 20px; background: var(--white); border-radius: 50%;
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; mix-blend-mode: difference;
-            transition: transform 0.1s;
-        }
-        .cursor-follower {
-            position: fixed; width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 9998;
-            transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        body.hovering .cursor-main { transform: translate(-50%, -50%) scale(0.5); }
-        body.hovering .cursor-follower { transform: translate(-50%, -50%) scale(1.5); background: rgba(255,255,255,0.05); border-color: transparent; backdrop-filter: blur(2px); }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
-        /* --- 2. LOADER (Welcome to the Matrix) --- */
-        .loader {
-            position: fixed; inset: 0; background: #000; z-index: 20000;
-            display: flex; justify-content: center; align-items: center;
-            font-family: 'Syncopate', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 2vw;
-            animation: collapse 0.8s cubic-bezier(0.87, 0, 0.13, 1) 2.5s forwards;
-        }
-        .loader span { opacity: 0; animation: blink 0.2s forwards; }
-        .loader span:nth-child(1) { animation-delay: 0.5s; }
-        .loader span:nth-child(2) { animation-delay: 0.8s; }
-        .loader span:nth-child(3) { animation-delay: 1.1s; }
-        .loader-bar {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; background: var(--accent);
-            transform-origin: left; animation: loadBar 2.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-        }
-
-        /* --- 3. NAVIGATION (Stealth Mode) --- */
+        /* --- 2. NAVIGATION --- */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 40px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 5000; mix-blend-mode: exclusion;
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--border);
         }
-        .brand { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* The Magnetic Trigger */
-        .menu-trigger {
-            position: relative; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center;
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); overflow: hidden;
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: flex; flex-direction: column; cursor: pointer; gap: 6px; z-index: 2001; padding: 10px;
         }
-        .menu-trigger:hover { border-color: var(--white); transform: scale(1.1); }
-        .menu-lines { display: flex; flex-direction: column; gap: 5px; align-items: flex-end; }
-        .line { width: 25px; height: 2px; background: white; transition: 0.3s; }
-        .line:nth-child(2) { width: 15px; }
-        .menu-trigger:hover .line { width: 25px; background: var(--neon); }
+        .line { width: 30px; height: 3px; background-color: var(--text); transition: 0.3s; border-radius: 2px; }
+        
+        /* --- SIDE MENU (Fixed with Back Button) --- */
+        .side-menu {
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 350px; height: 100vh;
+            background: #02040a; border-left: 1px solid var(--border);
+            z-index: 3000; transition: 0.4s ease-in-out; display: flex; flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+        }
+        .side-menu.active { right: 0; }
+        
+        /* Menu Header (Name + Back Button) */
+        .menu-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 30px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02);
+        }
+        .branding-text {
+            font-size: 0.9rem; font-weight: 700; color: var(--primary); letter-spacing: 1px; text-transform: uppercase;
+        }
+        .close-btn {
+            background: transparent; border: 1px solid var(--border); color: var(--text);
+            padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .close-btn:hover { background: var(--primary); border-color: var(--primary); }
 
-        /* Full Screen Overlay */
-        .menu-overlay {
-            position: fixed; inset: 0; background: var(--charcoal); z-index: 4999;
-            transform: translateY(-100%); transition: 1s cubic-bezier(0.77, 0, 0.175, 1);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        /* Menu Links */
+        .menu-links-container {
+            padding: 40px 30px; display: flex; flex-direction: column; gap: 25px; overflow-y: auto;
         }
-        .menu-overlay.active { transform: translateY(0); }
-        .menu-link {
-            font-family: 'Syncopate', sans-serif; font-size: 4vw; color: rgba(255,255,255,0.2); text-decoration: none;
-            margin: 10px 0; text-transform: uppercase; transition: 0.4s; font-weight: 700;
+        .side-menu a.main-link {
+            color: var(--text); text-decoration: none; font-size: 1.4rem; font-weight: 600; transition: 0.3s;
         }
-        .menu-link:hover { color: var(--white); letter-spacing: 5px; -webkit-text-stroke: 1px var(--white); }
+        .side-menu a.main-link:hover { color: var(--primary); padding-left: 10px; }
+        
+        /* Menu Socials */
+        .menu-socials { margin-top: 20px; display: flex; gap: 20px; }
+        .menu-socials a { font-size: 1.6rem; color: var(--text-muted); transition: 0.3s; }
+        .menu-socials a:hover { color: var(--primary); transform: translateY(-3px); }
 
-        /* --- 4. HERO (The Abyss) --- */
+        /* Overlay (Dark background behind menu) */
+        .menu-overlay-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7);
+            z-index: 2999; display: none; backdrop-filter: blur(3px);
+        }
+        .menu-overlay-bg.active { display: block; }
+
+
+        /* --- 3. HERO SECTION --- */
         header {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 5%; position: relative;
+            position: relative; height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden; padding: 0 20px;
         }
-        .hero-bg {
-            position: absolute; width: 60vw; height: 60vw; background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-            top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(120px); opacity: 0.3;
-            animation: pulse 10s infinite alternate; z-index: -1;
-        }
-        .badge-wrapper { margin-bottom: 30px; overflow: hidden; }
-        .badge {
-            display: inline-block; padding: 10px 25px; border: 1px solid rgba(255,255,255,0.1); border-radius: 100px;
-            font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; color: var(--neon);
-            animation: slideUp 1s cubic-bezier(0.19, 1, 0.22, 1) 3s forwards; transform: translateY(100%);
-        }
+        #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
         
-        .hero-title {
-            font-family: 'Syncopate', sans-serif; font-size: 7vw; line-height: 0.9; text-transform: uppercase; font-weight: 700;
-            mix-blend-mode: normal;
-        }
-        .word { display: inline-block; transform: translateY(100%); clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); animation: textReveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) 3.2s forwards; }
-        .word:nth-child(2) { animation-delay: 3.4s; color: rgba(255,255,255,0.5); }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; animation: fadeInUp 1s ease-out; }
+        .badge { display: inline-block; padding: 8px 16px; border-radius: 30px; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); color: var(--cyan); margin-bottom: 25px; font-size: 0.9rem; letter-spacing: 1px; }
         
-        /* --- 5. INFINITE MARQUEE --- */
-        .marquee {
-            padding: 20px 0; background: var(--white); color: var(--black); overflow: hidden; white-space: nowrap; border-top: 1px solid var(--charcoal);
-            transform: rotate(-2deg) scale(1.05); margin: 50px 0;
-        }
-        .marquee-track { display: inline-block; animation: scroll 20s linear infinite; }
-        .marquee span { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 2rem; margin: 0 50px; text-transform: uppercase; }
-
-        /* --- 6. HOLOGRAPHIC PROJECTS --- */
-        .projects-sec { padding: 150px 5%; }
-        .sec-title { font-family: 'Syncopate', sans-serif; font-size: 3rem; margin-bottom: 100px; text-align: right; text-transform: uppercase; }
-        .sec-title span { display: block; font-size: 1rem; color: var(--accent); font-family: 'Inter', sans-serif; letter-spacing: 5px; margin-bottom: 10px; }
-
-        .project-card {
-            height: 70vh; width: 100%; margin-bottom: 100px; position: relative;
-            transform-style: preserve-3d; perspective: 1000px;
-        }
-        .p-img-container {
-            width: 100%; height: 100%; overflow: hidden; border-radius: 4px; filter: grayscale(1); transition: 0.5s;
-            transform: rotateX(0) rotateY(0); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .project-card:hover .p-img-container { filter: grayscale(0); transform: scale(1.02); box-shadow: 0 30px 60px rgba(79, 70, 229, 0.3); }
-        .p-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-title { font-size: 4.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 25px; letter-spacing: -2px; }
+        .hero-title span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        .p-info {
-            position: absolute; bottom: 40px; left: -40px; background: var(--black); padding: 40px; border: 1px solid rgba(255,255,255,0.1);
-            z-index: 10; width: 400px; transition: 0.4s;
+        .hero-desc { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        
+        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+        .btn-glow { padding: 18px 40px; background: var(--primary); color: white; border-radius: 12px; font-weight: 700; text-decoration: none; transition: 0.3s; border: none; font-size: 1rem; position: relative; overflow: hidden; }
+        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5); }
+        .btn-outline { padding: 18px 40px; background: transparent; border: 1px solid var(--border); color: white; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s; }
+        .btn-outline:hover { background: var(--glass); border-color: white; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- 4. LOGOS & SECTIONS --- */
+        .logos { padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01); overflow: hidden; white-space: nowrap; }
+        .logos-slide { display: inline-block; animation: slide 30s infinite linear; }
+        .logos-slide i { font-size: 2.5rem; margin: 0 50px; color: var(--text-muted); transition: 0.3s; opacity: 0.5; }
+        .logos-slide i:hover { color: var(--text); opacity: 1; }
+        @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+        section { padding: 100px 5%; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 15px; }
+        .section-header span { color: var(--primary); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .card {
+            background: var(--glass); padding: 40px; border-radius: 20px; border: 1px solid var(--border);
+            transition: 0.4s; position: relative; overflow: hidden; backdrop-filter: blur(10px);
         }
-        .project-card:hover .p-info { transform: translate(20px, -20px); border-color: var(--neon); }
-        .p-info h3 { font-family: 'Syncopate', sans-serif; font-size: 1.5rem; margin-bottom: 10px; text-transform: uppercase; }
-        .p-info p { color: var(--neon); font-size: 0.9rem; letter-spacing: 2px; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .card-icon { width: 60px; height: 60px; background: rgba(99, 102, 241, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--primary); margin-bottom: 25px; transition: 0.3s; }
+        .card:hover .card-icon { background: var(--primary); color: white; transform: rotate(10deg); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .card p { color: var(--text-muted); line-height: 1.6; }
 
-        /* --- 7. THE BOARD (Founders) --- */
-        .founders { padding: 100px 5%; background: #080808; position: relative; border-top: 1px solid rgba(255,255,255,0.05); }
-        .founders h2 { font-family: 'Syncopate', sans-serif; font-size: 4vw; text-align: center; margin-bottom: 80px; text-transform: uppercase; opacity: 0.5; }
-        
-        .duo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; max-width: 1200px; margin: 0 auto; }
-        .founder-card { text-align: center; position: relative; padding: 40px; border: 1px solid rgba(255,255,255,0.05); transition: 0.5s; }
-        .founder-card:hover { background: rgba(255,255,255,0.02); border-color: var(--accent); }
-        
-        .f-role { display: block; color: var(--accent); font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; font-weight: 700; }
-        .f-name { font-size: 2.5rem; margin-bottom: 15px; font-family: 'Syncopate', sans-serif; font-weight: 700; text-transform: uppercase; }
-        .f-desc { color: #888; line-height: 1.6; font-size: 0.9rem; max-width: 400px; margin: 0 auto; }
+        /* Stats */
+        .stats { display: flex; justify-content: space-around; flex-wrap: wrap; background: linear-gradient(to right, #111827, #000); padding: 60px; border-radius: 20px; margin: 0 5%; border: 1px solid var(--border); }
+        .stat-box { text-align: center; margin: 20px; }
+        .stat-num { font-size: 3.5rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
+        .stat-label { color: var(--text-muted); font-size: 1.1rem; letter-spacing: 1px; margin-top: 5px; }
 
-        /* --- 8. FOOTER (Terminal Style) --- */
-        footer { padding: 100px 5%; border-top: 1px solid rgba(255,255,255,0.1); background: #020202; }
-        .big-contact {
-            font-family: 'Syncopate', sans-serif; font-size: 8vw; line-height: 1; text-transform: uppercase; font-weight: 700;
-            color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3); transition: 0.5s; cursor: pointer;
+        /* Projects */
+        .project-card { position: relative; border-radius: 20px; overflow: hidden; height: 350px; cursor: pointer; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .project-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            transform: translateY(20px); opacity: 0; transition: 0.4s;
         }
-        .big-contact:hover { color: var(--neon); -webkit-text-stroke: 0px; text-shadow: 0 0 50px var(--neon); }
-        
-        .meta-footer { display: flex; justify-content: space-between; margin-top: 100px; color: #555; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .project-card:hover img { transform: scale(1.1); }
+        .project-card:hover .project-overlay { transform: translateY(0); opacity: 1; }
+        .tag { font-size: 0.8rem; background: var(--primary); padding: 4px 10px; border-radius: 4px; margin-bottom: 10px; display: inline-block; }
 
-        /* ANIMATIONS */
-        @keyframes collapse { to { clip-path: inset(0 0 100% 0); pointer-events: none; } }
-        @keyframes blink { to { opacity: 1; } }
-        @keyframes loadBar { 0% { width: 0; } 100% { width: 100%; } }
-        @keyframes slideUp { to { transform: translateY(0); } }
-        @keyframes textReveal { to { transform: translateY(0); } }
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        @keyframes pulse { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; } 100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; } }
+        /* CTA */
+        .cta { margin: 100px 5%; background: var(--gradient); border-radius: 25px; padding: 80px; text-align: center; position: relative; overflow: hidden; }
+        .cta h2 { font-size: 3rem; margin-bottom: 20px; position: relative; z-index: 2; }
+        .cta p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; position: relative; z-index: 2; opacity: 0.9; }
+        .cta-btn { background: white; color: var(--primary); padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 800; transition: 0.3s; display: inline-block; position: relative; z-index: 2; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .circle-bg { position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.1); border-radius: 50%; top: -50px; left: -50px; }
 
-        /* Responsive */
+        /* Footer */
+        footer { padding: 80px 5% 30px; border-top: 1px solid var(--border); background: #02040a; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; margin-bottom: 50px; }
+        .footer-col h3 { font-size: 1.2rem; margin-bottom: 25px; color: white; }
+        .footer-col a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 15px; transition: 0.3s; }
+        .footer-col a:hover { color: var(--primary); padding-left: 5px; }
+
         @media (max-width: 768px) {
-            .hero-title { font-size: 12vw; }
-            .duo-grid { grid-template-columns: 1fr; }
-            .project-card { height: 50vh; }
-            .p-info { left: 0; width: 100%; bottom: 0; }
-            .big-contact { font-size: 12vw; }
-            .cursor-main, .cursor-follower { display: none; }
+            .hero-title { font-size: 3rem; }
+            .stats { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 0. THE LOADER -->
-    <div class="loader">
-        <div>
-            <span>SYSTEM</span> <span>READY</span> <span>//2025</span>
-        </div>
-        <div class="loader-bar"></div>
-    </div>
+    <!-- Scroll Progress -->
+    <div id="progress-container"><div id="progress-bar"></div></div>
 
-    <!-- 1. TEXTURE & CURSOR -->
-    <div class="grain-overlay"></div>
-    <div class="cursor-main"></div>
-    <div class="cursor-follower"></div>
-
-    <!-- 2. NAV -->
+    <!-- Nav -->
     <nav>
-        <div class="brand trigger-magnet">GothwadApps_</div>
-        <div class="menu-trigger trigger-magnet" onclick="toggleMenu()">
-            <div class="menu-lines">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
+        <div class="logo">GothwadApps</div>
+        
+        <!-- Hamburger Icon (Opens Menu) -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
         </div>
     </nav>
 
-    <!-- MENU OVERLAY -->
-    <div class="menu-overlay" id="menuOverlay">
-        <a href="#" class="menu-link trigger-magnet">Index</a>
-        <a href="#" class="menu-link trigger-magnet">Expertise</a>
-        <a href="#" class="menu-link trigger-magnet">Legacy</a>
-        <a href="#" class="menu-link trigger-magnet">Alliance</a>
+    <!-- Overlay Background (Clicking this also closes menu) -->
+    <div class="menu-overlay-bg" id="menuOverlayBg" onclick="toggleMenu()"></div>
+
+    <!-- SIDE MENU with Back Button -->
+    <div class="side-menu" id="sideMenu">
+        
+        <!-- Header: CEO Name & Close Button -->
+        <div class="menu-header">
+            <span class="branding-text">CEO Pawan Gothwad</span>
+            <button class="close-btn" onclick="toggleMenu()">
+                <i class="fas fa-arrow-right"></i> Back
+            </button>
+        </div>
+
+        <!-- Links (PASTE YOUR LINKS HERE) -->
+        <div class="menu-links-container">
+            <a href="LINK_ABOUT_US_YAHA_DALO" class="main-link">About Us</a>
+            <a href="LINK_SERVICES_YAHA_DALO" class="main-link">Services</a>
+            <a href="LINK_PROJECTS_YAHA_DALO" class="main-link">Projects</a>
+            <a href="LINK_CONTACT_YAHA_DALO" class="main-link">Contact</a>
+            
+            <!-- Social Icons (PASTE LINKS BELOW) -->
+            <div class="menu-socials">
+                <a href="LINK_YOUTUBE_YAHA_DALO" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="LINK_FACEBOOK_YAHA_DALO" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="LINK_INSTAGRAM_YAHA_DALO" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="LINK_TWITTER_YAHA_DALO" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
     </div>
 
-    <!-- 3. HERO SECTION -->
+    <!-- Hero -->
     <header>
-        <div class="hero-bg"></div>
+        <div id="particles-js"></div> 
         <div class="hero-content">
-            <div class="badge-wrapper">
-                <span class="badge"><i class="fas fa-certificate"></i> India's Apex Agency</span>
+            <span class="badge">✨ #1 Rated App Development Agency</span>
+            <h1 class="hero-title">We Build Software <br> That <span>Defines The Future</span></h1>
+            <p class="hero-desc">Transforming complex ideas into elegant, scalable, and high-performance digital solutions for startups and enterprises.</p>
+            <div class="hero-btns">
+                <a href="LINK_CONTACT_YAHA_DALO" class="btn-glow">Start Project</a>
+                <a href="LINK_PROJECTS_YAHA_DALO" class="btn-outline">View Portfolio</a>
             </div>
-            <h1 class="hero-title">
-                <div style="overflow:hidden;"><span class="word">Engineering</span></div>
-                <div style="overflow:hidden;"><span class="word">The Future</span></div>
-                <div style="overflow:hidden; margin-top:20px;"><span class="word" style="font-size: 1.5rem; font-family:'Inter'; letter-spacing:5px; color:var(--accent);">// No Compromise.</span></div>
-            </h1>
         </div>
     </header>
 
-    <!-- 4. INFINITE MARQUEE -->
-    <div class="marquee">
-        <div class="marquee-track">
-            <span>WEB APPS • INDIA'S #1 • 100% SUCCESS • GOTHWAD APPS • DIGITAL DOMINANCE • </span>
-            <span>WEB APPS • INDIA'S #1 • 100% SUCCESS • GOTHWAD APPS • DIGITAL DOMINANCE • </span>
+    <!-- Logo Slider -->
+    <div class="logos">
+        <div class="logos-slide">
+            <i class="fab fa-aws"></i>
+            <i class="fab fa-google"></i>
+            <i class="fab fa-meta"></i>
+            <i class="fab fa-apple"></i>
+            <i class="fab fa-stripe"></i>
+            <i class="fab fa-react"></i>
+            <i class="fab fa-node-js"></i>
+            <i class="fab fa-android"></i>
+            <i class="fab fa-aws"></i>
+            <i class="fab fa-google"></i>
+            <i class="fab fa-meta"></i>
+            <i class="fab fa-apple"></i>
         </div>
     </div>
 
-    <!-- 5. PROJECTS (3D TILT) -->
-    <section class="projects-sec">
-        <div class="sec-title">
-            <span>Selected Works</span>
-            Digital Empire
+    <!-- Services -->
+    <section id="services">
+        <div class="section-header">
+            <h2>Our <span>Expertise</span></h2>
+            <p style="color:var(--text-muted);">Comprehensive solutions for every digital need.</p>
         </div>
-
-        <!-- Project 1 -->
-        <div class="project-card trigger-tilt">
-            <div class="p-img-container">
-                <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2832&auto=format&fit=crop" alt="Crypto">
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>App Development</h3>
+                <p>Native iOS & Android apps built with Flutter and React Native for lightning-fast performance.</p>
             </div>
-            <div class="p-info">
-                <h3>Quantum DeFi</h3>
-                <p>BLOCKCHAIN INFRASTRUCTURE</p>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-code"></i></div>
+                <h3>Web Platforms</h3>
+                <p>Scalable SaaS platforms, corporate websites, and e-commerce stores using Next.js and MERN stack.</p>
             </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="project-card trigger-tilt">
-            <div class="p-img-container">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" alt="Cyber">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-brain"></i></div>
+                <h3>AI & Automation</h3>
+                <p>Smart chatbots, predictive analytics, and process automation to save your time and money.</p>
             </div>
-            <div class="p-info">
-                <h3>Neural Dashboard</h3>
-                <p>AI DATA VISUALIZATION</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. THE LEADERSHIP (BAAP LEVEL) -->
-    <section class="founders">
-        <h2>Architects of Reality</h2>
-        <div class="duo-grid">
-            <div class="founder-card trigger-magnet">
-                <span class="f-role">Founder & CEO</span>
-                <div class="f-name">Pawan Gothwad</div>
-                <p class="f-desc">The visionary reshaping India's digital landscape. Ensuring Gothwad Apps remains the undisputed leader in web engineering.</p>
-            </div>
-            <div class="founder-card trigger-magnet">
-                <span class="f-role">Co-Founder</span>
-                <div class="f-name">Vishnu Meena</div>
-                <p class="f-desc">The technical force behind our proprietary technologies. Building systems that scale to billions of users.</p>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Product Design</h3>
+                <p>World-class UI/UX design that ensures your users have a seamless and enjoyable experience.</p>
             </div>
         </div>
     </section>
 
-    <!-- 7. FOOTER -->
+    <!-- Stats -->
+    <div class="stats" id="counterSection">
+        <div class="stat-box">
+            <span class="stat-num" data-target="1500">0</span>
+            <span class="stat-label">Projects Shipped</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num" data-target="250">0</span>
+            <span class="stat-label">Expert Developers</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num" data-target="298">0</span>
+            <span class="stat-label">% Client Retention</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num" data-target="5">0</span>
+            <span class="stat-label">Years of Excellence</span>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <section id="work">
+        <div class="section-header">
+            <h2>Featured <span>Work</span></h2>
+        </div>
+        <div class="grid">
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Work 1">
+                <div class="project-overlay">
+                    <span class="tag">Fintech</span>
+                    <h3>Crypto Wallet App</h3>
+                    <p>Secure blockchain wallet with real-time trading.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Work 2">
+                <div class="project-overlay">
+                    <span class="tag">SaaS</span>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Enterprise data visualization platform.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Work 3">
+                <div class="project-overlay">
+                    <span class="tag">Mobile</span>
+                    <h3>Food Delivery</h3>
+                    <p>Hyper-local delivery app with live tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta">
+        <div class="circle-bg"></div>
+        <h2>Ready to Scale Your Business?</h2>
+        <p>Join 100+ innovative companies who trust Gothwad Apps.</p>
+        <a href="LINK_CONTACT_YAHA_DALO" class="cta-btn">Book a Free Consultation</a>
+    </div>
+
+    <!-- Contact Form -->
+    <section id="contact" style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <div class="section-header">
+            <h2>Let's <span>Talk</span></h2>
+            <p style="color:var(--text-muted)">Tell us about your idea.</p>
+        </div>
+        <form style="display: grid; gap: 20px;">
+            <input type="text" placeholder="Your Name" style="padding: 20px; background: var(--glass); border: 1px solid var(--border); color: white; border-radius: 10px;">
+            <input type="email" placeholder="Your Email" style="padding: 20px; background: var(--glass); border: 1px solid var(--border); color: white; border-radius: 10px;">
+            <textarea rows="5" placeholder="Project Details" style="padding: 20px; background: var(--glass); border: 1px solid var(--border); color: white; border-radius: 10px;"></textarea>
+            <button class="btn-glow" style="cursor: pointer;">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div style="margin-bottom: 20px; font-family: 'Inter'; color: var(--accent);">READY TO DOMINATE?</div>
-        <div class="big-contact trigger-magnet">INITIATE</div>
-        <div class="big-contact trigger-magnet">PROJECT</div>
-        
-        <div class="meta-footer">
-            <div>Gothwad Apps © 2025</div>
-            <div>Dausa, Rajasthan // Global HQ</div>
-            <div>IN: #1 Rated</div>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3 style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.5rem;">GothwadApps</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">Premium software engineering for the modern world.</p>
+                
+                <!-- Founder & Co-Founder Names -->
+                <div style="margin-top: 20px;">
+                    <p style="color: var(--text); font-weight: 700;">Founder & CEO: Pawan Gothwad</p>
+                    <p style="color: var(--text); font-weight: 700;">Co-Founder: Vishnu Meena</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <a href="LINK_SERVICES_YAHA_DALO">Mobile Apps</a>
+                <a href="LINK_SERVICES_YAHA_DALO">Web Development</a>
+                <a href="LINK_SERVICES_YAHA_DALO">UI/UX Design</a>
+                <a href="LINK_SERVICES_YAHA_DALO">Cloud Solutions</a>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <a href="LINK_ABOUT_US_YAHA_DALO">About Us</a>
+                <a href="LINK_CAREERS_YAHA_DALO">Careers</a>
+                <a href="LINK_BLOG_YAHA_DALO">Blog</a>
+                <a href="LINK_CONTACT_YAHA_DALO">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <a href="mailto:PawanGothwad@gmail.com">PawanGothwad@gmail.com</a>
+                <a href="tel:NUMBER_YAHA_DALO">+91 75*****3</a>
+                <a href="LINK_MAP_YAHA_DALO">Dausa Rajasthan, India</a>
+            </div>
+        </div>
+        <div style="text-align: center; color: var(--text-muted); padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+            &copy; 2025 Gothwad Apps. All rights reserved.
         </div>
     </footer>
 
-    <!-- SCRIPT (The Brain) -->
+    <!-- Scripts -->
     <script>
-        // 1. CURSOR LOGIC
-        const cursor = document.querySelector('.cursor-main');
-        const follower = document.querySelector('.cursor-follower');
-        
-        let mouseX = 0, mouseY = 0;
-        let followerX = 0, followerY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+        // Toggle Menu Function
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('menuOverlayBg');
             
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
-        });
-
-        // Smooth Follower Loop
-        function animateCursor() {
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
-            
-            follower.style.left = followerX + 'px';
-            follower.style.top = followerY + 'px';
-            
-            requestAnimationFrame(animateCursor);
+            // Toggle the class 'active' to show/hide
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+            } else {
+                menu.classList.add('active');
+                overlay.classList.add('active');
+            }
         }
-        animateCursor();
 
-        // 2. MAGNETIC BUTTONS
-        const magnets = document.querySelectorAll('.trigger-magnet');
-        magnets.forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-                document.body.classList.add('hovering');
-            });
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = `translate(0px, 0px)`;
-                document.body.classList.remove('hovering');
-            });
-        });
+        // 1. Scroll Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+            
+            // Trigger Counter Animation
+            const section = document.getElementById('counterSection');
+            if (section && winScroll >= section.offsetTop - 500) {
+                runCounter();
+            }
+        };
 
-        // 3. 3D TILT EFFECT ON CARDS
-        const cards = document.querySelectorAll('.trigger-tilt');
+        // 2. Counter Animation
+        let counted = false;
+        function runCounter() {
+            if(!counted) {
+                const counters = document.querySelectorAll('.stat-num');
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const speed = 200;
+                    const updateCount = () => {
+                        const count = +counter.innerText;
+                        const inc = target / speed;
+                        if(count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 20);
+                        } else {
+                            counter.innerText = target + "+";
+                        }
+                    };
+                    updateCount();
+                });
+                counted = true;
+            }
+        }
+
+        // 3. Simple Particle Background
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        document.getElementById('particles-js').appendChild(canvas);
+        
+        let width, height;
+        let particles = [];
+
+        function initParticles() {
+            width = canvas.width = document.getElementById('particles-js').offsetWidth;
+            height = canvas.height = document.getElementById('particles-js').offsetHeight;
+            particles = [];
+            for(let i=0; i<60; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 1,
+                    vy: (Math.random() - 0.5) * 1,
+                    size: Math.random() * 2 + 1
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.5)';
+            
+            for(let i=0; i<particles.length; i++) {
+                let p = particles[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if(p.x < 0 || p.x > width) p.vx *= -1;
+                if(p.y < 0 || p.y > height) p.vy *= -1;
+
+                for(let j=i+1; j<particles.length; j++) {
+                    let p2 = particles[j];
+                    let dist = Math.sqrt((p.x - p2.x)**2 + (p.y - p2.y)**2);
+                    if(dist < 150) {
+                        ctx.strokeStyle = `rgba(99, 102, 241, ${0.1 - dist/1500})`;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawParticles);
+        }
+
+        window.addEventListener('resize', initParticles);
+        initParticles();
+        drawParticles();
+
+        // 4. Tilt Effect on Cards
+        const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -5; // Max 5 deg rotation
-                const rotateY = ((x - centerX) / centerX) * 5;
-
-                card.querySelector('.p-img-container').style.transform = 
-                    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                card.style.transform = `perspective(1000px) rotateX(${(y - rect.height/2) / 20}deg) rotateY(${-(x - rect.width/2) / 20}deg) translateY(-10px)`;
             });
-            
             card.addEventListener('mouseleave', () => {
-                card.querySelector('.p-img-container').style.transform = 
-                    `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
         });
-
-        // 4. MENU TOGGLE
-        function toggleMenu() {
-            const menu = document.getElementById('menuOverlay');
-            menu.classList.toggle('active');
-        }
     </script>
 </body>
 </html>
