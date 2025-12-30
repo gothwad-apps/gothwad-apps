@@ -1,4 +1,4 @@
-Gothwad Apps GitHub
+Gothwad Apps
 Gothwad Apps is a dynamic mobile app development company specializing in innovative Android and iOS solutions. We craft scalable, user-centric applications for startups and enterprises.
 
 About Us
@@ -9,13 +9,13 @@ Custom Android & iOS app development
 UI/UX design and prototyping
 App maintenance and updates
 Integration with APIs and backend services
-Performance optimization and testing
-​
-Technologies
-Category    	Tools & Frameworks
+ntegration with APIs and backend server
+
+Technologie
+Category    	  Tools & Frameworks
 Mobile	        Android Studio, Flutter, React Native
 Backend	        Firebase, Node.js, AWS
-Frontend	    Kotlin, Swift, Dart
+Frontend	      Kotlin, Swift, Dart
 Design	        Figma, Adobe XD
 Featured        Projects 
 
@@ -27,4 +27,7 @@ Enterprise productivity tools
 Get in Touch
 Contact us for collaborations: gothwadapps@gmail.com
 Follow on GitHub: Gothwad Apps
-LinkedIn: Gothwad Apps Profile
+LinkedIn: Gothwad Apps
+Founder & CEO: Pawan Gothwad
+Co-Founder: Vishnu Meena 
+
