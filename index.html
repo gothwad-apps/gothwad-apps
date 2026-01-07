@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gothwad Apps | Founder & CEO Pawan Gothwad | Web Apps Experts</title>
     
+    <!-- ADDED: Favicon Support -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -49,48 +52,83 @@
         }
         .line { width: 30px; height: 3px; background-color: var(--text); transition: 0.3s; border-radius: 2px; }
         
-        /* --- SIDE MENU (Fixed with Back Button) --- */
+        /* --- SIDE MENU (UPDATED UI) --- */
         .side-menu {
             position: fixed; top: 0; right: -100%; width: 100%; max-width: 350px; height: 100vh;
-            background: #02040a; border-left: 1px solid var(--border);
-            z-index: 3000; transition: 0.4s ease-in-out; display: flex; flex-direction: column;
+            background: rgba(2, 4, 10, 0.95); /* Slightly more opaque for better contrast */
+            border-left: 1px solid var(--border);
+            z-index: 3000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
             box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            backdrop-filter: blur(15px);
         }
         .side-menu.active { right: 0; }
         
         /* Menu Header (Name + Back Button) */
         .menu-header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 30px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02);
+            padding: 20px 25px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02);
         }
         .branding-text {
-            font-size: 0.9rem; font-weight: 700; color: var(--primary); letter-spacing: 1px; text-transform: uppercase;
+            font-size: 0.8rem; /* UPDATED: Smaller branding */
+            font-weight: 700; color: var(--primary); letter-spacing: 1.5px; text-transform: uppercase;
         }
         .close-btn {
-            background: transparent; border: 1px solid var(--border); color: var(--text);
-            padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;
-            display: flex; align-items: center; gap: 5px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text);
+            padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; transition: 0.3s;
+            display: flex; align-items: center; gap: 8px; font-weight: 500;
         }
-        .close-btn:hover { background: var(--primary); border-color: var(--primary); }
+        .close-btn:hover { background: var(--primary); border-color: var(--primary); color: white; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
 
         /* Menu Links */
         .menu-links-container {
-            padding: 40px 30px; display: flex; flex-direction: column; gap: 25px; overflow-y: auto;
+            padding: 30px 25px; display: flex; flex-direction: column; gap: 15px; overflow-y: auto;
+            scrollbar-width: thin;
         }
+        
+        /* UPDATED: Sleek Button Links */
         .side-menu a.main-link {
-            color: var(--text); text-decoration: none; font-size: 1.4rem; font-weight: 600; transition: 0.3s;
+            position: relative;
+            color: var(--text); 
+            text-decoration: none; 
+            font-size: 1.2rem; /* UPDATED: Smaller font */
+            font-weight: 500; 
+            padding: 14px 20px;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: block;
+            overflow: hidden;
         }
-        .side-menu a.main-link:hover { color: var(--primary); padding-left: 10px; }
+        
+        /* Hover Animation & Glow */
+        .side-menu a.main-link:hover { 
+            color: white;
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.15), transparent);
+            border-color: var(--primary);
+            padding-left: 25px;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
+        }
+        
+        /* Active State / Decoration */
+        .side-menu a.main-link::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--primary); opacity: 0; transition: 0.3s;
+        }
+        .side-menu a.main-link:hover::after { opacity: 1; }
         
         /* Menu Socials */
-        .menu-socials { margin-top: 20px; display: flex; gap: 20px; }
-        .menu-socials a { font-size: 1.6rem; color: var(--text-muted); transition: 0.3s; }
-        .menu-socials a:hover { color: var(--primary); transform: translateY(-3px); }
+        .menu-socials { 
+            margin-top: 10px; padding-top: 20px; border-top: 1px solid var(--border); 
+            display: flex; justify-content: center; gap: 25px; margin-bottom: 20px;
+        }
+        .menu-socials a { font-size: 1.4rem; color: var(--text-muted); transition: 0.3s; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--glass); }
+        .menu-socials a:hover { color: white; background: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); }
 
         /* Overlay (Dark background behind menu) */
         .menu-overlay-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7);
-            z-index: 2999; display: none; backdrop-filter: blur(3px);
+            z-index: 2999; display: none; backdrop-filter: blur(4px);
         }
         .menu-overlay-bg.active { display: block; }
 
@@ -212,14 +250,23 @@
             </button>
         </div>
 
-        <!-- Links (PASTE YOUR LINKS HERE) -->
+        <!-- Links (UPDATED WITH 7 NEW BUTTONS) -->
         <div class="menu-links-container">
             <a href="./about.html" class="main-link">About Us</a>
             <a href="./services.html" class="main-link">Services</a>
             <a href="./projects.html" class="main-link">Projects</a>
             <a href="./contact.html" class="main-link">Contact</a>
             
-            <!-- Social Icons (PASTE LINKS BELOW) -->
+            <!-- REQUIRED NEW BUTTONS -->
+            <a href="#" class="main-link">Button1</a>
+            <a href="#" class="main-link">Button2</a>
+            <a href="#" class="main-link">Button3</a>
+            <a href="#" class="main-link">Button4</a>
+            <a href="#" class="main-link">Button5</a>
+            <a href="#" class="main-link">Button6</a>
+            <a href="#" class="main-link">Button7</a>
+
+            <!-- Social Icons (Moved to bottom of container) -->
             <div class="menu-socials">
                 <a href="LINK_YOUTUBE_YAHA_DALO" target="_blank"><i class="fab fa-youtube"></i></a>
                 <a href="LINK_FACEBOOK_YAHA_DALO" target="_blank"><i class="fab fa-facebook"></i></a>
