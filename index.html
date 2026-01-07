@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- =========================================================================
+       1. GLOBAL CONFIGURATION (SITE SETTINGS)
+       Is section ko edit karein taaki Google/WhatsApp par sahi details dikhein.
+    ========================================================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gothwad Apps | Founder & CEO Pawan Gothwad | Web Apps Experts</title>
     
-    <!-- ADDED: Favicon Support -->
+    <!-- ✏️ 1.1 SITE TITLE (Browser Tab Name) -->
+    <title>Gothwad Apps Limited | Web & App Experts</title>
+
+    <!-- ✏️ 1.2 SITE DESCRIPTION (Google & SEO) -->
+    <meta name="description" content="We design Android and Web Applications that define the future for startups and enterprises. #1 Rated App Development Agency by Pawan Gothwad.">
+    <meta name="author" content="Pawan Gothwad">
+    
+    <!-- ✏️ 1.3 FAVICON (Browser Tab Icon) -->
+    <!-- Apni image ka naam 'favicon.png' rakhein aur root folder me daalein -->
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <!-- Fonts -->
+    <!-- ✏️ 1.4 SOCIAL PREVIEW (WhatsApp/Facebook/Twitter Share Card) -->
+    <!-- Jab aap link kisi ko bhejenge to ye dikhega -->
+    <meta property="og:title" content="Gothwad Apps Limited">
+    <meta property="og:description" content="Building the future of software. Android & Web Development Experts.">
+    <meta property="og:image" content="https://yourwebsite.com/preview-image.jpg"> <!-- Yahan apni photo ka link dalein -->
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- =========================================================================
+       2. FONTS & ICONS (DO NOT EDIT)
+    ========================================================================== -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- =========================================================================
+       3. CSS STYLES (UI/UX DESIGN)
+    ========================================================================== -->
     <style>
-        /* --- 1. THEME VARIABLES (Original Colors) --- */
+        /* --- THEME VARIABLES (Colors) --- */
         :root {
             --bg: #030712;
-            --glass: rgba(255, 255, 255, 0.03);
+            --glass: rgba(255, 255, 255, 0.03); /* Glassy Effect Base */
             --border: rgba(255, 255, 255, 0.1);
-            --primary: #6366f1;
+            --primary: #6366f1; /* Main Brand Color */
             --accent: #ec4899;
             --cyan: #06b6d4;
             --text: #f3f4f6;
@@ -29,7 +53,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        /* Scroll Progress Bar */
+        /* Progress Bar */
         #progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: transparent; z-index: 9999; }
         #progress-bar { height: 4px; background: var(--gradient); width: 0%; transition: width 0.1s; }
 
@@ -39,23 +63,20 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
-        /* --- 2. NAVIGATION --- */
+        /* --- NAVIGATION --- */
         nav {
             position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
             background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--border);
         }
         .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Hamburger Menu Icon */
-        .hamburger {
-            display: flex; flex-direction: column; cursor: pointer; gap: 6px; z-index: 2001; padding: 10px;
-        }
+        .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 6px; z-index: 2001; padding: 10px; }
         .line { width: 30px; height: 3px; background-color: var(--text); transition: 0.3s; border-radius: 2px; }
         
-        /* --- SIDE MENU (UPDATED UI) --- */
+        /* --- SIDE MENU (IMPROVED UI) --- */
         .side-menu {
             position: fixed; top: 0; right: -100%; width: 100%; max-width: 350px; height: 100vh;
-            background: rgba(2, 4, 10, 0.95); /* Slightly more opaque for better contrast */
+            background: rgba(2, 4, 10, 0.95); /* Darker, sleek background */
             border-left: 1px solid var(--border);
             z-index: 3000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
             box-shadow: -10px 0 30px rgba(0,0,0,0.8);
@@ -63,13 +84,12 @@
         }
         .side-menu.active { right: 0; }
         
-        /* Menu Header (Name + Back Button) */
         .menu-header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 25px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02);
         }
         .branding-text {
-            font-size: 0.8rem; /* UPDATED: Smaller branding */
+            font-size: 0.8rem; /* SMALLER TEXT */
             font-weight: 700; color: var(--primary); letter-spacing: 1.5px; text-transform: uppercase;
         }
         .close-btn {
@@ -79,18 +99,17 @@
         }
         .close-btn:hover { background: var(--primary); border-color: var(--primary); color: white; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
 
-        /* Menu Links */
         .menu-links-container {
             padding: 30px 25px; display: flex; flex-direction: column; gap: 15px; overflow-y: auto;
-            scrollbar-width: thin;
+            scrollbar-width: thin; /* Firefox sleek scroll */
         }
         
-        /* UPDATED: Sleek Button Links */
+        /* Sleek Button Links (Glassy & Gradient Hover) */
         .side-menu a.main-link {
             position: relative;
             color: var(--text); 
             text-decoration: none; 
-            font-size: 1.2rem; /* UPDATED: Smaller font */
+            font-size: 1.2rem; /* SMALLER FONT */
             font-weight: 500; 
             padding: 14px 20px;
             background: var(--glass);
@@ -101,7 +120,6 @@
             overflow: hidden;
         }
         
-        /* Hover Animation & Glow */
         .side-menu a.main-link:hover { 
             color: white;
             background: linear-gradient(90deg, rgba(99, 102, 241, 0.15), transparent);
@@ -110,14 +128,6 @@
             box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
         }
         
-        /* Active State / Decoration */
-        .side-menu a.main-link::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--primary); opacity: 0; transition: 0.3s;
-        }
-        .side-menu a.main-link:hover::after { opacity: 1; }
-        
-        /* Menu Socials */
         .menu-socials { 
             margin-top: 10px; padding-top: 20px; border-top: 1px solid var(--border); 
             display: flex; justify-content: center; gap: 25px; margin-bottom: 20px;
@@ -125,38 +135,27 @@
         .menu-socials a { font-size: 1.4rem; color: var(--text-muted); transition: 0.3s; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--glass); }
         .menu-socials a:hover { color: white; background: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); }
 
-        /* Overlay (Dark background behind menu) */
         .menu-overlay-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7);
             z-index: 2999; display: none; backdrop-filter: blur(4px);
         }
         .menu-overlay-bg.active { display: block; }
 
-
-        /* --- 3. HERO SECTION --- */
-        header {
-            position: relative; height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; overflow: hidden; padding: 0 20px;
-        }
+        /* --- HERO & SECTIONS (Original Design Preserved) --- */
+        header { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; padding: 0 20px; }
         #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
-        
         .hero-content { position: relative; z-index: 2; max-width: 900px; animation: fadeInUp 1s ease-out; }
         .badge { display: inline-block; padding: 8px 16px; border-radius: 30px; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); color: var(--cyan); margin-bottom: 25px; font-size: 0.9rem; letter-spacing: 1px; }
-        
         .hero-title { font-size: 4.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 25px; letter-spacing: -2px; }
         .hero-title span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
         .hero-desc { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        
         .hero-btns { display: flex; gap: 20px; justify-content: center; }
         .btn-glow { padding: 18px 40px; background: var(--primary); color: white; border-radius: 12px; font-weight: 700; text-decoration: none; transition: 0.3s; border: none; font-size: 1rem; position: relative; overflow: hidden; }
         .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5); }
         .btn-outline { padding: 18px 40px; background: transparent; border: 1px solid var(--border); color: white; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s; }
         .btn-outline:hover { background: var(--glass); border-color: white; }
-
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 4. LOGOS & SECTIONS --- */
         .logos { padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01); overflow: hidden; white-space: nowrap; }
         .logos-slide { display: inline-block; animation: slide 30s infinite linear; }
         .logos-slide i { font-size: 2.5rem; margin: 0 50px; color: var(--text-muted); transition: 0.3s; opacity: 0.5; }
@@ -167,38 +166,27 @@
         .section-header { text-align: center; margin-bottom: 70px; }
         .section-header h2 { font-size: 3rem; margin-bottom: 15px; }
         .section-header span { color: var(--primary); }
-        
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         
-        .card {
-            background: var(--glass); padding: 40px; border-radius: 20px; border: 1px solid var(--border);
-            transition: 0.4s; position: relative; overflow: hidden; backdrop-filter: blur(10px);
-        }
+        .card { background: var(--glass); padding: 40px; border-radius: 20px; border: 1px solid var(--border); transition: 0.4s; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
         .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
         .card-icon { width: 60px; height: 60px; background: rgba(99, 102, 241, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--primary); margin-bottom: 25px; transition: 0.3s; }
         .card:hover .card-icon { background: var(--primary); color: white; transform: rotate(10deg); }
         .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
         .card p { color: var(--text-muted); line-height: 1.6; }
 
-        /* Stats */
         .stats { display: flex; justify-content: space-around; flex-wrap: wrap; background: linear-gradient(to right, #111827, #000); padding: 60px; border-radius: 20px; margin: 0 5%; border: 1px solid var(--border); }
         .stat-box { text-align: center; margin: 20px; }
         .stat-num { font-size: 3.5rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
         .stat-label { color: var(--text-muted); font-size: 1.1rem; letter-spacing: 1px; margin-top: 5px; }
 
-        /* Projects */
         .project-card { position: relative; border-radius: 20px; overflow: hidden; height: 350px; cursor: pointer; }
         .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .project-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            transform: translateY(20px); opacity: 0; transition: 0.4s;
-        }
+        .project-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); transform: translateY(20px); opacity: 0; transition: 0.4s; }
         .project-card:hover img { transform: scale(1.1); }
         .project-card:hover .project-overlay { transform: translateY(0); opacity: 1; }
         .tag { font-size: 0.8rem; background: var(--primary); padding: 4px 10px; border-radius: 4px; margin-bottom: 10px; display: inline-block; }
 
-        /* CTA */
         .cta { margin: 100px 5%; background: var(--gradient); border-radius: 25px; padding: 80px; text-align: center; position: relative; overflow: hidden; }
         .cta h2 { font-size: 3rem; margin-bottom: 20px; position: relative; z-index: 2; }
         .cta p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; position: relative; z-index: 2; opacity: 0.9; }
@@ -206,7 +194,6 @@
         .cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         .circle-bg { position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.1); border-radius: 50%; top: -50px; left: -50px; }
 
-        /* Footer */
         footer { padding: 80px 5% 30px; border-top: 1px solid var(--border); background: #02040a; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; margin-bottom: 50px; }
         .footer-col h3 { font-size: 1.2rem; margin-bottom: 25px; color: white; }
@@ -226,9 +213,9 @@
 
     <!-- Nav -->
     <nav>
+        <!-- ✏️ 2.1 LOGO NAME -->
         <div class="logo">GothwadApps</div>
         
-        <!-- Hamburger Icon (Opens Menu) -->
         <div class="hamburger" onclick="toggleMenu()">
             <div class="line"></div>
             <div class="line"></div>
@@ -236,28 +223,29 @@
         </div>
     </nav>
 
-    <!-- Overlay Background (Clicking this also closes menu) -->
+    <!-- Overlay Background -->
     <div class="menu-overlay-bg" id="menuOverlayBg" onclick="toggleMenu()"></div>
 
     <!-- SIDE MENU with Back Button -->
     <div class="side-menu" id="sideMenu">
         
-        <!-- Header: CEO Name & Close Button -->
+        <!-- Header -->
         <div class="menu-header">
+            <!-- ✏️ 2.2 BRANDING IN MENU -->
             <span class="branding-text">CEO Pawan Gothwad</span>
             <button class="close-btn" onclick="toggleMenu()">
                 <i class="fas fa-arrow-right"></i> Back
             </button>
         </div>
 
-        <!-- Links (UPDATED WITH 7 NEW BUTTONS) -->
+        <!-- ✏️ 2.3 MENU LINKS (Edit Hrefs here) -->
         <div class="menu-links-container">
             <a href="./about.html" class="main-link">About Us</a>
             <a href="./services.html" class="main-link">Services</a>
             <a href="./projects.html" class="main-link">Projects</a>
             <a href="./contact.html" class="main-link">Contact</a>
             
-            <!-- REQUIRED NEW BUTTONS -->
+            <!-- REQUIRED: The 7 New Buttons -->
             <a href="#" class="main-link">Button1</a>
             <a href="#" class="main-link">Button2</a>
             <a href="#" class="main-link">Button3</a>
@@ -266,12 +254,12 @@
             <a href="#" class="main-link">Button6</a>
             <a href="#" class="main-link">Button7</a>
 
-            <!-- Social Icons (Moved to bottom of container) -->
+            <!-- ✏️ 2.4 SOCIAL LINKS (Paste your real links here) -->
             <div class="menu-socials">
-                <a href="LINK_YOUTUBE_YAHA_DALO" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="LINK_FACEBOOK_YAHA_DALO" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="LINK_INSTAGRAM_YAHA_DALO" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="LINK_TWITTER_YAHA_DALO" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="LINK_YOUTUBE" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="LINK_FACEBOOK" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="LINK_INSTAGRAM" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="LINK_TWITTER" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </div>
@@ -281,11 +269,12 @@
         <div id="particles-js"></div> 
         <div class="hero-content">
             <span class="badge">✨ #1 Rated App Development Agency</span>
+            <!-- ✏️ 3.1 HERO TITLE & TEXT -->
             <h1 class="hero-title">We Build Software <br> That <span>Defines The Future</span></h1>
             <p class="hero-desc">We Designs a Android And Web Applications That Defines The Future For Startups and Enterprises.<br>Founder- Pawan Gothwad </p>
             <div class="hero-btns">
-                <a href="link yha baad me paste karunga yar" class="btn-glow">Start Project</a>
-                <a href="LINK_PROJECTS_YAHA_DALO" class="btn-outline">View Portfolio</a>
+                <a href="#" class="btn-glow">Start Project</a>
+                <a href="#" class="btn-outline">View Portfolio</a>
             </div>
         </div>
     </header>
@@ -301,6 +290,7 @@
             <i class="fab fa-react"></i>
             <i class="fab fa-node-js"></i>
             <i class="fab fa-android"></i>
+            <!-- Duplicate for infinite loop -->
             <i class="fab fa-aws"></i>
             <i class="fab fa-google"></i>
             <i class="fab fa-meta"></i>
@@ -396,7 +386,7 @@
         <div class="circle-bg"></div>
         <h2>If You Want To Order % Make Your Own Web Or Android App Then Contact Us</h2>
         <p>Join 100+ innovative companies who trust Gothwad Apps.</p>
-        <a href="LINK_CONTACT_YAHA_DALO" class="cta-btn">Book a Free Consultation</a>
+        <a href="contact.html" class="cta-btn">Book a Free Consultation</a>
     </div>
 
     <!-- Contact Form -->
@@ -420,7 +410,7 @@
                 <h3 style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.5rem;">GothwadApps</h3>
                 <p style="color: var(--text-muted); line-height: 1.6;">Premium software engineering for the modern world.</p>
                 
-                <!-- Founder & Co-Founder Names -->
+                <!-- ✏️ 4.1 FOUNDER DETAILS -->
                 <div style="margin-top: 20px;">
                     <p style="color: var(--text); font-weight: 700;">Founder & CEO: Pawan Gothwad</p>
                     <p style="color: var(--text); font-weight: 700;">Co-Founder: Vishnu Meena</p>
@@ -428,10 +418,10 @@
             </div>
             <div class="footer-col">
                 <h3>Services</h3>
-                <a href="LINK_SERVICES_YAHA_DALO">Mobile Apps</a>
-                <a href="LINK_SERVICES_YAHA_DALO">Web Development</a>
-                <a href="LINK_SERVICES_YAHA_DALO">UI/UX Design</a>
-                <a href="LINK_SERVICES_YAHA_DALO">Cloud Solutions</a>
+                <a href="#">Mobile Apps</a>
+                <a href="#">Web Development</a>
+                <a href="#">UI/UX Design</a>
+                <a href="#">Cloud Solutions</a>
             </div>
             <div class="footer-col">
                 <h3>Company</h3>
@@ -442,15 +432,15 @@
             </div>
             <div class="footer-col">
                 <h3>Contact</h3>
+                <!-- ✏️ 4.2 CONTACT DETAILS -->
                 <a href="mailto:PawanGothwad@gmail.com">GothwadApps@gmail.com</a>
                 <a href="mailto:PawanGothwad@gmail.com">PawanGothwad@gmail.com</a>
-                <a href="mailto:PawanGothwad@gmail.com">PawanGothwad@gmail.com</a>
-                <a href="tel:NUMBER_YAHA_DALO">+91 75*****3</a>
-                <a href="LINK_MAP_YAHA_DALO">Dausa Rajasthan, India</a>
+                <a href="tel:+917500000003">+91 75*****3</a>
+                <a href="#">Dausa Rajasthan, India</a>
             </div>
         </div>
         <div style="text-align: center; color: var(--text-muted); padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
-            &copy; 2025 Gothwad Apps. All rights reserved.
+            &copy; 2025 Gothwad Apps Limited. All rights reserved.
         </div>
     </footer>
 
@@ -461,7 +451,6 @@
             const menu = document.getElementById('sideMenu');
             const overlay = document.getElementById('menuOverlayBg');
             
-            // Toggle the class 'active' to show/hide
             if (menu.classList.contains('active')) {
                 menu.classList.remove('active');
                 overlay.classList.remove('active');
@@ -471,21 +460,20 @@
             }
         }
 
-        // 1. Scroll Progress Bar
+        // Scroll Progress Bar
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             let scrolled = (winScroll / height) * 100;
             document.getElementById("progress-bar").style.width = scrolled + "%";
             
-            // Trigger Counter Animation
             const section = document.getElementById('counterSection');
             if (section && winScroll >= section.offsetTop - 500) {
                 runCounter();
             }
         };
 
-        // 2. Counter Animation
+        // Counter Animation
         let counted = false;
         function runCounter() {
             if(!counted) {
@@ -509,7 +497,7 @@
             }
         }
 
-        // 3. Simple Particle Background
+        // Particles
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         document.getElementById('particles-js').appendChild(canvas);
@@ -567,7 +555,7 @@
         initParticles();
         drawParticles();
 
-        // 4. Tilt Effect on Cards
+        // 3D Tilt Effect
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
